@@ -51,6 +51,7 @@ For migration checks:
 ## Console mode
 
 This script will work in console mode. Specify your switches at the command line:
+
 `"nuix_console.exe" -licencesourcetype dongle smoke.rb -Dcase="C:\cases\Case 1" -Dmigrate=false`
 
 # License
