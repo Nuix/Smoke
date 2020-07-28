@@ -2,7 +2,7 @@
 # Needs Case: true
 # Needs Selected Items: false
 # Author: Cameron Stiller
-# Version: 1.0
+# Version: 1.2
 # Comment: Please note this has been provided as a guide only and should be thoroughly tested before entering production use.
 
 if($current_case.nil?)
@@ -27,6 +27,14 @@ if($current_case.nil?)
 	end
 else
 	$UI=true
+end
+
+def escapeQuotations(theString)
+	#escape all the quotations that can mess with searching/counts
+	temp=theString.gsub("\\","\\\"")
+	temp=temp.gsub("“","\\\“")
+	temp=temp.gsub("”","\\\”")
+	return temp
 end
 
 
@@ -174,7 +182,7 @@ begin
 	smoke_test["Statistics"]["Custodians"]=$current_case.respond_to?(:getAllCustodians) ? $current_case.getAllCustodians().sort().map { | custodian|
 		{
 			"Name"=>java_to_ruby(custodian),
-			"Count"=>$current_case.count("custodian:\"#{custodian.gsub("\"","\\\"")}\"")
+			"Count"=>$current_case.count("custodian:\"#{escapeQuotations(custodian)}\"")
 		}
 	} : "???"
 
@@ -182,14 +190,14 @@ begin
 	smoke_test["Statistics"]["Entities"]=$current_case.respond_to?(:getAllEntityTypes) ? $current_case.getAllEntityTypes().sort().map { | entity|
 		{
 			"Name"=>java_to_ruby(entity),
-			"Count"=>$current_case.count("named-entities:#{entity.gsub("\"","\\\"")};*")
+			"Count"=>$current_case.count("named-entities:#{escapeQuotations(entity)};*")
 		}
 	}: "???"
 	
 	smoke_test["Statistics"]["Exclusions"]=$current_case.respond_to?(:getAllExclusions) ? $current_case.getAllExclusions().sort().map { | exclusion|
 		{
 			"Name"=>java_to_ruby(exclusion),
-			"Count"=>$current_case.count("exclusion:\"#{exclusion.gsub("\"","\\\"")}\"")
+			"Count"=>$current_case.count("exclusion:\"#{escapeQuotations(exclusion)}\"")
 		}
 	} : "???"
 		
@@ -232,7 +240,7 @@ begin
 	smoke_test["Statistics"]["Tags"]=$current_case.respond_to?(:getAllTags) ? $current_case.getAllTags().sort().map{ | tag|
 		{
 			"Name"=>tag,
-			"Count"=>$current_case.count("tag:\"#{tag.gsub("\"","\\\"")}\"")
+			"Count"=>$current_case.count("tag:\"#{escapeQuotations(tag)}\"")
 		}
 	} : "???"
 
