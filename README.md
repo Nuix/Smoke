@@ -1,4 +1,4 @@
-﻿Search Module
+﻿Smoke Test
 =============
 
 ![This script was last tested in Nuix 8.6](https://img.shields.io/badge/Script%20Tested%20in%20Nuix-8.6-green.svg)
