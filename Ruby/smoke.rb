@@ -343,7 +343,7 @@ begin
 			"ProductionSettingsSource"=>productionset.respond_to?(:getProductionSettingsSource) ? productionset.getProductionSettingsSource().to_s : "",
 			#fails on early 7.3 beta's due to nuix code bug
 			"Numbering hash"=>begin
-								productionset.respond_to?(:getProductionSetItems) ? productionset.getProductionSetItems().sort{|prod_item|prod_item.getDocumentNumber()}.map{|prod_item|
+								productionset.respond_to?(:getProductionSetItems) ? productionset.getProductionSetItems().sort_by(&:getDocumentNumber).map{|prod_item|
 									{
 										"DocumentID"=>prod_item.getDocumentNumber().to_s,
 										"ItemGUID"=>prod_item.getItem().getGuid().to_s
