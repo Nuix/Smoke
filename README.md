@@ -11,8 +11,11 @@ View the GitHub project [here](https://github.com/Nuix/Smoke) or download the la
 
 This script can be used to perform integrity checks or validate that migrations were successful.
 Every object in the case will be counted and configuration dumped to a text file:
+
 `%caseDirectory%\smoke\%version%.smoke`
+
 e.g.
+
 `C:\cases\Case 13\smoke\8.6.0.16.smoke`
 
 # Getting Started
