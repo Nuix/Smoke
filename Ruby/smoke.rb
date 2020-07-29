@@ -3,7 +3,7 @@
 # Needs Case: true
 # Needs Selected Items: false
 # Author: Cameron Stiller
-# Version: 1.3
+# Version: 1.4
 # Comment: Please note this has been provided as a guide only and should be thoroughly tested before entering production use.
 
 if($current_case.nil?)
@@ -32,7 +32,7 @@ end
 
 def escapeQuotations(theString)
 	#escape all the quotations that can mess with searching/counts
-	temp=theString.encode('utf-8').gsub("\\","\\\"")
+	temp=theString.encode('utf-8').gsub("\"","\\\"")
 	temp=temp.gsub("\u201C","\\\u201C") # these are the unicode double quote equivelant
 	temp=temp.gsub("\u201D","\\\u201D") # these are the unicode double quote equivelant
 	return temp
